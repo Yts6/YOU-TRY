@@ -11,7 +11,9 @@ AI Agent / 大模型应用开发 · 实习上岸学习仓库
 - [x] **Step 3** 建项目目录 + 虚拟环境 —— `.venv` ✅
 - [x] **Step 4** 注册模型 API，拿到 Key —— 智谱 GLM-4-Flash（免费）✅
 - [x] **Step 5** 跑通第一个大模型调用（流式）—— `first_call.py` 实测通过 ✅
-- [ ] **Step 6** 建 GitHub 仓库并推送
+- [x] **Step 6** 建 GitHub 仓库并推送 —— https://github.com/Yts6/YOU-TRY ✅
+- [x] **Step 7** Python 补缺 —— 4 个演示脚本 + 异步并发验收（2.8x 加速）✅
+- [ ] **Step 8** FastAPI 把模型调用包成接口
 
 ## 环境信息
 
@@ -45,27 +47,24 @@ Copy-Item .env.example .env   # 然后编辑填入 Key
 python first_call.py
 ```
 
-## 配置密钥
-
-```bash
-cp .env.example .env
-# 然后编辑 .env 填入自己的 Key
-```
-
-> ⚠️ `.env` 已在 `.gitignore` 中，**永远不会被提交**。永远不要把 Key 写进代码。
-
-## 目录说明
+## 目录结构
 
 ```
 agent-learning/
-├── .venv/            # 虚拟环境（不提交）
-├── .env              # 本地密钥（不提交）
-├── .env.example      # 密钥模板（提交）
+├── .venv/                    # 虚拟环境（不提交）
+├── .env                      # 本地密钥（不提交）
+├── .env.example              # 密钥模板（提交）
 ├── .gitignore
 ├── requirements.txt
 ├── README.md
-├── first_call.py     # Step 5：多平台流式调用示例
-└── (后续) main.py / parsers/ / prompts/ ...
+├── first_call.py             # Step 5：多平台流式调用示例
+└── step7/                    # Step 7：Python 补缺
+    ├── README.md
+    ├── 01_oop_decorator.py   # 类/装饰器/异常
+    ├── 02_async.py           # asyncio 异步
+    ├── 03_pydantic_typing.py # 类型注解 + Pydantic
+    ├── 04_async_llm.py       # 验收题：异步并发调模型
+    └── 模型幻觉实测记录.md    # 免费小模型 4/4 答错的实证
 ```
 
 ## 支持的大模型平台
@@ -78,3 +77,28 @@ agent-learning/
 | DeepSeek | `DEEPSEEK_API_KEY` | `deepseek-chat` | 约 1 元/百万 token |
 | 硅基流动 | `SILICONFLOW_API_KEY` | `Qwen/Qwen2.5-7B-Instruct` | 有免费额度 |
 | 通义千问 | `DASHSCOPE_API_KEY` | `qwen-turbo` | 有免费额度 |
+
+## 实测记录
+
+### Step 5 · 流式调用
+
+```
+[使用平台] 智谱 GLM（免费）
+[提问] 用一句话解释什么是 RAG
+[回答] RAG是"检索-摘要-生成"的缩写……
+[完成] 流式调用成功 ✅
+```
+
+### Step 7 · 异步并发（验收题 04）
+
+```
+任务数: 5 | 并发上限: 3
+成功: 5/5
+总耗时: 3.62s
+串行估算: 9.95s -> 并发实际: 3.62s
+加速比: 2.8x
+```
+
+> ⚠️ 同时实测发现：`glm-4-flash` 对 RAG / Function Calling / MCP / LangGraph
+> **4 个问题全部答错**，且同一问题三次调用得到三个不同错误答案。
+> 详见 [`step7/模型幻觉实测记录.md`](./step7/模型幻觉实测记录.md)。
