@@ -1,3 +1,14 @@
+# ---- Step 5: 大模型调用 ----
 openai>=1.50
 python-dotenv>=1.0
 requests>=2.32
+
+# ---- Step 8-9: Web 服务 ----
+fastapi>=0.115
+uvicorn[standard]>=0.32
+
+# ---- Step 10+ (后续按需安装) ----
+# langchain
+# langchain-openai
+# chromadb
+# streamlit
