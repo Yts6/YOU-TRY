@@ -1,0 +1,41 @@
+# ---- 密钥，绝对不能提交 ----
+.env
+.env.*
+!.env.example
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# ---- 虚拟环境 ----
+.venv/
+venv/
+env/
+
+# ---- 工具缓存 ----
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ---- 数据与模型 ----
+data/
+chroma_db/
+*.sqlite3
+*.db
+models/
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.swp
+
+# ---- 运行时产物 ----
+*.log
+_step*_check.sh
+
+# ---- 临时脚本（下划线开头均为一次性工具）----
+_*
+!.gitignore
