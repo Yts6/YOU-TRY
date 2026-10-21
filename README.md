@@ -7,7 +7,7 @@
 
 | 项目 | 说明 | 状态 |
 |---|---|---|
-| [agent-learning](./agent-learning/) | AI Agent / 大模型应用开发学习仓库（实习上岸路线） | 🚧 进行中 |
+| [agent-learning](./agent-learning/) | AI Agent / 大模型应用开发学习仓库| 🚧 进行中 |
 
 ---
 
